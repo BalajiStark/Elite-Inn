@@ -1,4 +1,24 @@
 {
+  "guests": [
+    {
+      "id": 1709193706380,
+      "name": "Stark",
+      "email": "balajicse.2910@gmail.com",
+      "password": "Starkishere"
+    },
+    {
+      "id": 1709201330510,
+      "name": "staer",
+      "email": "balajicse.2910@gmail.cod",
+      "password": "sdafdsfdsfsdf"
+    },
+    {
+      "id": 1709201496230,
+      "name": "dasdasd",
+      "email": "balajicse.2910@gmail.cor",
+      "password": "qwertyui"
+    }
+  ],
   "posts": [
     {
       "id": "1",
