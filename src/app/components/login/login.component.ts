@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Guest } from '../../model/Guest';
+import { Guest } from '../../model/Guest.model';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { GuestService } from '../../shared/guest.service';

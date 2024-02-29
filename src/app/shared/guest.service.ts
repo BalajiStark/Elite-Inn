@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Guest } from '../model/Guest';
+import { Guest } from '../model/Guest.model';
 import { Subject } from 'rxjs';
 
 @Injectable({
