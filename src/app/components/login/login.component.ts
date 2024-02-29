@@ -70,7 +70,7 @@ export class LoginComponent {
         }
         else {
           this.guestService.AddNewUser(guest).subscribe(data => {
-            this.guestService.user = guest;
+            this.guestService.SetUser(guest);
             this.router.navigate(['/home']);
           });
         }
@@ -94,7 +94,7 @@ export class LoginComponent {
           });
         }
         else {
-          this.guestService.user = data[0];
+          this.guestService.SetUser(data[0]);
           this.router.navigate(['/home']);
         }
       });

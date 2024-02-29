@@ -8,10 +8,14 @@ import { Guest } from '../../model/Guest';
   styleUrl: './navbar.component.css'
 })
 export class NavbarComponent {
-  
+
   user: Guest | undefined;
+  isSignedIn = false;
 
   constructor(private servive: GuestService) {
-    this.user = this.servive.user;
+    this.servive.user$.subscribe(data => {
+      this.user = data;
+      this.isSignedIn = data != null;
+    });
   }
 }
