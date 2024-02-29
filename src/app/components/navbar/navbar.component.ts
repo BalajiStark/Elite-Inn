@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { GuestService } from '../../shared/guest.service';
+import { Guest } from '../../model/Guest';
 
 @Component({
   selector: 'app-navbar',
@@ -6,5 +8,10 @@ import { Component } from '@angular/core';
   styleUrl: './navbar.component.css'
 })
 export class NavbarComponent {
-  user = false;
+  
+  user: Guest | undefined;
+
+  constructor(private servive: GuestService) {
+    this.user = this.servive.user;
+  }
 }
