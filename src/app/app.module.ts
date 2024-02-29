@@ -10,6 +10,7 @@ import { LoginComponent } from './components/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AccommodationComponent } from './components/accommodation/accommodation.component';
+import { BookComponent } from './components/book/book.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { AccommodationComponent } from './components/accommodation/accommodation
     HomeComponent,
     NavbarComponent,
     LoginComponent,
-    AccommodationComponent
+    AccommodationComponent,
+    BookComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +31,8 @@ import { AccommodationComponent } from './components/accommodation/accommodation
       {path: '', component: HomeComponent},
       {path: 'home', component: HomeComponent},
       {path: 'login', component: LoginComponent},
-      {path: 'accommodation', component: AccommodationComponent}
+      {path: 'accommodation', component: AccommodationComponent},
+      {path: 'book', component: BookComponent}
     ])
   ],
   providers: [

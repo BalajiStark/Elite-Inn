@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { GuestService } from '../../shared/guest.service';
-import { Guest } from '../../model/Guest';
+import { Guest } from '../../model/Guest.model';
 
 @Component({
   selector: 'app-navbar',
