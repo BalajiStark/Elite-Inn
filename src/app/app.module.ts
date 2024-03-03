@@ -11,6 +11,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AccommodationComponent } from './components/accommodation/accommodation.component';
 import { BookComponent } from './components/book/book.component';
+import { DateComponent } from './components/date/date.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { BookComponent } from './components/book/book.component';
     NavbarComponent,
     LoginComponent,
     AccommodationComponent,
-    BookComponent
+    BookComponent,
+    DateComponent
   ],
   imports: [
     BrowserModule,

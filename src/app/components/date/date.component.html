@@ -1,0 +1,25 @@
+<div class="book-room">
+    <h6 style="margin-left: 30px;">Select Date</h6>
+    <div class="row">
+        <ng-container>
+            <div class="col">
+                <p class="select-week">
+                    <a class="link" (click)="decreaseWeek()">Prev Week</a>
+                </p>
+            </div>
+            <div class="col" *ngFor="let d of dates">
+                <div class="card">
+                    <div class="card-body" [ngClass]="{'card-bg': d == selectedDate}" (click)="selectedDateFunction(d)">
+                        <p class="date"> {{ d.getDate() + " " + d.toLocaleString('default', { month: 'short' }) }} </p>
+                        <p class="day"> {{ d.toLocaleString('en-us', { weekday: 'short' }) }} </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <p class="select-week">
+                    <a class="link" (click)="increaseWeek()">Next Week</a>
+                </p>
+            </div>
+        </ng-container>
+    </div>
+</div>
