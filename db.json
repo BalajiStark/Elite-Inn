@@ -1,49 +1,61 @@
 {
-  "guests": [
-    {
-      "id": 1709193706380,
-      "name": "Stark",
-      "email": "balajicse.2910@gmail.com",
-      "password": "Starkishere"
-    },
-    {
-      "id": 1709201330510,
-      "name": "staer",
-      "email": "balajicse.2910@gmail.cod",
-      "password": "sdafdsfdsfsdf"
-    },
-    {
-      "id": 1709201496230,
-      "name": "dasdasd",
-      "email": "balajicse.2910@gmail.cor",
-      "password": "qwertyui"
-    }
-  ],
-  "posts": [
-    {
-      "id": "1",
-      "title": "a title",
-      "views": 100
-    },
-    {
-      "id": "2",
-      "title": "another title",
-      "views": 200
-    }
-  ],
-  "comments": [
-    {
-      "id": "1",
-      "text": "a comment about post 1",
-      "postId": "1"
-    },
-    {
-      "id": "2",
-      "text": "another comment about post 1",
-      "postId": "1"
-    }
-  ],
-  "profile": {
-    "name": "typicode"
+  "guests": [],
+  "rooms": {
+    "standard": [
+      100,
+      101,
+      102,
+      103,
+      104,
+      105,
+      106,
+      107,
+      108,
+      109,
+      110,
+      111,
+      112,
+      113,
+      114,
+      115,
+      116,
+      117,
+      118,
+      119
+    ],
+    "studio": [
+      200,
+      201,
+      202,
+      203,
+      204,
+      205,
+      206,
+      207,
+      208,
+      209,
+      210,
+      211,
+      212,
+      213,
+      214,
+      215,
+      216,
+      217,
+      218,
+      219
+    ],
+    "suite": [
+      300,
+      301,
+      302,
+      303,
+      304,
+      305,
+      306,
+      307,
+      308,
+      309
+    ]
   }
 }

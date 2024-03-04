@@ -12,6 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AccommodationComponent } from './components/accommodation/accommodation.component';
 import { BookComponent } from './components/book/book.component';
 import { DateComponent } from './components/date/date.component';
+import { RoomsComponent } from './components/rooms/rooms.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { DateComponent } from './components/date/date.component';
     LoginComponent,
     AccommodationComponent,
     BookComponent,
-    DateComponent
+    DateComponent,
+    RoomsComponent
   ],
   imports: [
     BrowserModule,
