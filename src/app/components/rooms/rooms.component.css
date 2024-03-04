@@ -1,10 +1,9 @@
 .rooms {
-   width: 60%;
-   height: 400px;
-   border: 1px solid gray;
-   margin-left: 2%;
-   margin-top: 10px;
-   border-radius: 5px;
+    height: 400px;
+    border: 1px solid gray;
+    margin-left: 30px;
+    margin-top: 10px;
+    border-radius: 5px;
 }
 
 span {
@@ -22,7 +21,9 @@ span {
     color: green;
 }
 
-.card:hover, .selectedRoom, .selectedRoom:hover {
+.card:hover,
+.selectedRoom,
+.selectedRoom:hover {
     background-color: green;
     color: white;
     cursor: pointer;
@@ -30,6 +31,7 @@ span {
 
 .card-body {
     padding-top: 7px;
+    cursor: pointer;
 }
 
 .unavailable {

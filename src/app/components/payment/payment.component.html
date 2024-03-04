@@ -1,0 +1,73 @@
+<div class="checkout">
+    <h6>
+        Selected Rooms
+    </h6>
+    <div class="selectedRooms">
+        <div *ngFor="let s of rooms; let i = index">
+            <button class="btn btn-primary room-btn" style="height: 25px">
+                Room 101
+            </button>
+            <b style="margin-left: 5px;">Adults :</b>
+            <input type="radio" name="adults{{ i }}" id="a1{{ i }}" style="margin-left: 5px;" checked />
+            <label for="a1" class="adults-count">
+                <div class="adults">1</div>
+            </label>
+            <input type="radio" id="a2" name="adults{{ i }}" style="margin-left: 5px;" />
+            <label class="adults-count" for="a2">
+                <div class="adults">2</div>
+            </label>
+            <b style="margin-left: 15px;">Child :</b>
+            <input type="radio" name="child{{ i }}" id="a1" style="margin-left: 5px;" checked />
+            <label for="a1" class="child-count">
+                <div class="child">1</div>
+            </label>
+            <input type="radio" id="a2" name="child{{ i }}" style="margin-left: 5px;" />
+            <label class="child-count" for="a2">
+                <div class="child">2</div>
+            </label>
+            <span style="margin-left: 50px; border: 1px solid black; background-color: lightblue;">
+                $ 123
+            </span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash"
+                viewBox="0 0 16 16">
+                <path
+                    d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z" />
+                <path
+                    d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z" />
+            </svg>
+        </div>
+    </div>
+    <div class="total">
+        <b>Total :</b>
+        <b>$1234</b>
+    </div>
+    <h6>Payment</h6>
+    <form [formGroup]="form">
+        <div>
+            <input required type="text" formControlName="cardNumber" class="form-control card-number" id="cardNumber"
+                placeholder="CardNumber">
+            <div class="error" *ngIf="cardNumber?.touched && cardNumber?.invalid">
+                <div *ngIf="cardNumber?.errors?.['required']">CardNumber is required</div>
+                <div *ngIf="cardNumber?.errors?.['maxLength']">CardNumber should maximum of 18 characters</div>
+                <div *ngIf="cardNumber?.errors?.['minlength']">CardNumber should minimum of 12 characters</div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col col-cvv">
+                <input required type="text" formControlName="cvv" class="form-control card-number" id="cvv"
+                    placeholder="CVV">
+                <div class="error" *ngIf="cvv?.touched && cvv?.invalid">
+                    <div>cvv is invalid</div>
+                </div>
+            </div>
+            <div class="col col-expiry">
+                <input style="width: 67%;" required type="text" formControlName="expiry"
+                    class="form-control card-expiry" id="expiry" placeholder="Expiry (mm/yy)">
+                <div class="error" *ngIf="expiry?.touched && expiry?.invalid">
+                    <div>expiry is invalid</div>
+                </div>
+            </div>
+        </div>
+        <button class="btn btn-primary pay-btn">Pay and Book Rooms</button>
+    </form>
+</div>
