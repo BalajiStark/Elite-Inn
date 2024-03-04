@@ -13,6 +13,7 @@ import { AccommodationComponent } from './components/accommodation/accommodation
 import { BookComponent } from './components/book/book.component';
 import { DateComponent } from './components/date/date.component';
 import { RoomsComponent } from './components/rooms/rooms.component';
+import { PaymentComponent } from './components/payment/payment.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { RoomsComponent } from './components/rooms/rooms.component';
     AccommodationComponent,
     BookComponent,
     DateComponent,
-    RoomsComponent
+    RoomsComponent,
+    PaymentComponent
   ],
   imports: [
     BrowserModule,

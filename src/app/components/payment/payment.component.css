@@ -1,0 +1,73 @@
+.checkout {
+    border: 1px solid gray;
+    margin-top: 2%;
+    width: 102%;
+    border-radius: 5px;
+}
+
+.selectedRooms {
+    border: 1px solid gray;
+    border-radius: 5px;
+    height: 200px;
+    overflow: scroll;
+}
+
+button {
+    height: 25px;
+    padding-top: 0px;
+    margin: 3px 0 5px 5px;
+    text-align: center;
+}
+
+.room-btn {
+    pointer-events: none;
+}
+
+.col {
+    width: 10px;
+}
+
+svg {
+    margin: 0 0 5px 25px;
+}
+
+svg:hover {
+    color: red;
+    cursor: pointer;
+}
+
+.total {
+    text-align: right;
+    margin-right: 13.5%;
+}
+
+.card-number {
+    margin: 5px 0 0 2%;
+    width: 80%;
+}
+
+.col-cvv {
+    width: 60%;
+    margin-left: 5px;
+}
+
+.col-expiry {
+    width: 40%;
+    margin: 5px 0 0 -65px;
+}
+
+.pay-btn {
+    width: 50%;
+    height: auto;
+    margin-left: 2%;
+}
+
+.pay-btn:hover {
+    cursor: pointer;
+}
+
+.error {
+    color: red;
+    font-size: 10px;
+    margin-left: 2%;
+}
