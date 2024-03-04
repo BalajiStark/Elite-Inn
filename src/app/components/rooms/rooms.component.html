@@ -1,0 +1,45 @@
+<div class="rooms">
+    <div>
+        <h6 style="margin-left: 10px;">Click & Select Rooms</h6>
+        <strong style="margin-left: 10px;">Floor 1 Rooms <span class="btn btn-primary">Standard</span></strong>
+    </div>
+    <div class="row">
+        <ng-container *ngFor="let s of rooms?.standard; let i = index">
+            <div class="col">
+                <div class="card" (click)="selectRoom(s, 'Standard')" [ngClass]="{'selectedRoom': checkRooms(s, 'Standard')}">
+                    <div class="card-body">
+                        <p>{{ s }}</p>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+    </div>
+    <div>
+        <strong style="margin-left: 10px;">Floor 2 Rooms <span class="btn btn-primary">Studio</span></strong>
+    </div>
+    <div class="row">
+        <ng-container *ngFor="let s of rooms?.studio; let i = index">
+            <div class="col">
+                <div class="card" (click)="selectRoom(s, 'Studio')" [ngClass]="{'selectedRoom': checkRooms(s, 'Studio')}">
+                    <div class="card-body">
+                        <p>{{ s }}</p>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+    </div>
+    <div>
+        <strong style="margin-left: 10px;">Floor 3 Rooms <span class="btn btn-primary">Suite</span></strong>
+    </div>
+    <div class="row">
+        <ng-container *ngFor="let s of rooms?.suite; let i = index">
+            <div class="col">
+                <div class="card" (click)="selectRoom(s, 'Suite')" [ngClass]="{'selectedRoom': checkRooms(s, 'Suite')}">
+                    <div class="card-body">
+                        <p>{{ s }}</p>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+    </div>
+</div>

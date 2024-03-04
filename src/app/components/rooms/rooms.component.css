@@ -1,0 +1,44 @@
+.rooms {
+   width: 60%;
+   height: 400px;
+   border: 1px solid gray;
+   margin-left: 2%;
+   margin-top: 10px;
+   border-radius: 5px;
+}
+
+span {
+    height: 25px;
+    padding-top: 0px;
+    margin: 5px 0 5px 0;
+    pointer-events: none;
+}
+
+.card {
+    height: 40px;
+    width: 60px;
+    margin-top: 5px;
+    border: 1px solid green;
+    color: green;
+}
+
+.card:hover, .selectedRoom, .selectedRoom:hover {
+    background-color: green;
+    color: white;
+    cursor: pointer;
+}
+
+.card-body {
+    padding-top: 7px;
+}
+
+.unavailable {
+    background-color: gray;
+    border: 1px solid gray;
+    color: white;
+}
+
+.row {
+    margin-left: 1px;
+    width: 100%;
+}
