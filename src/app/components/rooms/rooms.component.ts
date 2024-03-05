@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { RoomService } from '../../shared/room.service';
 import { Rooms } from '../../model/rooms.model';
+import { BookingDetails, RoomDetails } from '../../model/Booking.model';
 
 @Component({
   selector: 'app-rooms',
@@ -10,49 +11,51 @@ import { Rooms } from '../../model/rooms.model';
 export class RoomsComponent {
 
   rooms: Rooms | undefined;
-  selectedStandardRoom: number[] = [];
-  selectedStudioRoom: number[] = [];
-  selectedSuiteRoom: number[] = [];
+  bookingDetails: BookingDetails = new BookingDetails(1, new Date());
 
   constructor(private roomService: RoomService) {
-    this.roomService.GetRoomNumbers();
+    this.bookingDetails = new BookingDetails(1, new Date());
     this.roomService.rooms$.subscribe(data => {
       this.rooms = data;
     });
   }
 
-  selectRoom(num: any, roomType: any) {
+  selectRoom(num: number, roomType: string) {
     if (roomType == 'Standard') {
-      const index = this.selectedStandardRoom.indexOf(num);
-      if(index > -1) {
-        this.selectedStandardRoom.splice(index, 1);
+      if (this.checkRooms(num)) {
+        this.removeRooms(num);
       } else {
-        this.selectedStandardRoom.push(num);
+        this.addRooms(num, roomType, 123);
       }
     } else if (roomType == 'Studio') {
-      const index = this.selectedStudioRoom.indexOf(num);
-      if(index > -1) {
-        this.selectedStudioRoom.splice(index, 1);
+      if (this.checkRooms(num)) {
+        this.removeRooms(num);
       } else {
-        this.selectedStudioRoom.push(num);
+        this.addRooms(num, roomType, 147);
       }
     } else {
-      const index = this.selectedSuiteRoom.indexOf(num);
-      if(index > -1) {
-        this.selectedSuiteRoom.splice(index, 1);
+      if (this.checkRooms(num)) {
+        this.removeRooms(num);
       } else {
-        this.selectedSuiteRoom.push(num);
+        this.addRooms(num, roomType, 182);
       }
     }
   }
 
-  checkRooms(room: number, roomType: any) {
-    if (roomType == 'Standard') {
-      return this.selectedStandardRoom.includes(room);
-    } else if (roomType == 'Studio') {
-      return this.selectedStudioRoom.includes(room);
-    } else {
-      return this.selectedSuiteRoom.includes(room);
-    }
+  checkRooms(room: number) {
+    return this.bookingDetails.bookedRooms.filter(e => e.roomNumber == room).length > 0;
+  }
+
+  addRooms(num: number, roomType: string, price: number) {
+    let roomDetails = new RoomDetails(new Date().valueOf(), num, roomType, price, 1, 1);
+    this.bookingDetails?.bookedRooms.push(roomDetails);
+    this.roomService.bookingDetails.next(this.bookingDetails);
+  }
+
+  removeRooms(num: number) {
+    this.bookingDetails.bookedRooms = this.bookingDetails?.bookedRooms.filter(function (obj) {
+      return obj.roomNumber !== num;
+    });
+    this.roomService.bookingDetails.next(this.bookingDetails);
   }
 }

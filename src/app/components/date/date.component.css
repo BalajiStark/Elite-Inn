@@ -23,3 +23,10 @@ p {
 .card-body:hover, .select-week:hover {
     cursor: pointer;
 }
+
+.isDisabled {
+    color: currentColor;
+    cursor: not-allowed;
+    opacity: 0.5;
+    text-decoration: none;
+}
