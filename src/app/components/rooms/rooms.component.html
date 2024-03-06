@@ -6,7 +6,8 @@
     <div class="row">
         <ng-container *ngFor="let s of rooms?.standard; let i = index">
             <div class="col">
-                <div class="card" (click)="selectRoom(s, 'Standard')" [ngClass]="{'selectedRoom': checkRooms(s)}">
+                <div class="card" (click)="selectRoom(s, 'Standard')" [ngClass]="{'selectedRoom': checkRooms(s)}" 
+                                    [ngClass]="{'unavailable' :unavailableRooms(s)}">
                     <div class="card-body">
                         <p>{{ s }}</p>
                     </div>

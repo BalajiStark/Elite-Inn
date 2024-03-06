@@ -1,10 +1,10 @@
 export class BookingDetails {
-    public userId: any;
+    public id: any;
     public date: Date | undefined;
     public bookedRooms: RoomDetails[] = [];
 
-    constructor(userId: any, date: any) {
-        this.userId = userId;
+    constructor(id: any, date: any) {
+        this.id = id;
         this.date = date;
     }
 }

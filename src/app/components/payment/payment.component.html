@@ -47,31 +47,34 @@
     </div>
     <h6>Payment</h6>
     <form [formGroup]="form">
-        <div>
-            <input required type="text" formControlName="cardNumber" class="form-control card-number" id="cardNumber"
-                placeholder="CardNumber">
-            <div class="error" *ngIf="cardNumber?.touched && cardNumber?.invalid">
-                <div *ngIf="cardNumber?.errors?.['required']">CardNumber is required</div>
-                <div *ngIf="cardNumber?.errors?.['maxLength']">CardNumber should maximum of 18 characters</div>
-                <div *ngIf="cardNumber?.errors?.['minlength']">CardNumber should minimum of 12 characters</div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col col-cvv">
-                <input required type="text" formControlName="cvv" class="form-control card-number" id="cvv"
-                    placeholder="CVV">
-                <div class="error" *ngIf="cvv?.touched && cvv?.invalid">
-                    <div>cvv is invalid</div>
+        <fieldset [disabled]="this.bookingDetails.bookedRooms.length == 0">
+            <div>
+                <input required type="text" formControlName="cardNumber" class="form-control card-number"
+                    id="cardNumber" placeholder="CardNumber" maxlength="12">
+                <div class="error" *ngIf="cardNumber?.touched && cardNumber?.invalid">
+                    <div *ngIf="cardNumber?.errors?.['required']">CardNumber is required</div>
+                    <div *ngIf="cardNumber?.errors?.['minlength']">CardNumber should minimum of 12 characters</div>
                 </div>
             </div>
-            <div class="col col-expiry">
-                <input style="width: 67%;" required type="text" formControlName="expiry"
-                    class="form-control card-expiry" id="expiry" placeholder="Expiry (mm/yy)">
-                <div class="error" *ngIf="expiry?.touched && expiry?.invalid">
-                    <div>expiry is invalid</div>
+            <div class="row">
+                <div class="col col-cvv">
+                    <input required type="text" formControlName="cvv" maxlength="3" class="form-control card-number" id="cvv"
+                        placeholder="CVV">
+                    <div class="error" *ngIf="cvv?.touched && cvv?.invalid">
+                        <div *ngIf="cvv?.errors?.['required']">CVV is required</div>
+                        <div *ngIf="cvv?.errors?.['minlength']">CVV is invalid</div>
+                    </div>
+                </div>
+                <div class="col col-expiry">
+                    <input style="width: 67%;" required type="text" formControlName="expiry" maxlength="5"
+                        class="form-control card-expiry" id="expiry" placeholder="Expiry (mm/yy)">
+                    <div class="error" *ngIf="expiry?.touched && expiry?.invalid">
+                        <div *ngIf="expiry?.errors?.['required']">Expiry is required</div>
+                        <div *ngIf="!expiry?.errors?.['required'] && expiry?.errors?.['shouldValidExpiry']">Expiry should be (mm/yy)</div>
+                    </div>
                 </div>
             </div>
-        </div>
-        <button class="btn btn-primary pay-btn" [disabled]="this.bookingDetails.bookedRooms.length == 0">Pay and Book Rooms</button>
+            <button class="btn btn-primary pay-btn" (click)="paymentForBooking()">Pay and Book Rooms</button>
+        </fieldset>
     </form>
 </div>

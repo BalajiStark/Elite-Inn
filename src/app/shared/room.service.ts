@@ -9,7 +9,7 @@ import { BookingDetails } from '../model/Booking.model';
 })
 export class RoomService {
 
-  url = "http://localhost:3000/rooms";
+  url = "http://localhost:3000/";
 
   rooms = new Subject<Rooms>();
   rooms$ = this.rooms.asObservable();
@@ -20,8 +20,13 @@ export class RoomService {
   constructor(private httpClient: HttpClient) { }
 
   GetRoomNumbers() {
-    this.httpClient.get<Rooms>(this.url).subscribe(data => {
+    this.httpClient.get<Rooms>(this.url + 'rooms').subscribe(data => {
       this.rooms.next(data);
     });
+  }
+
+  BookRooms(bookingDetails : BookingDetails) {
+    //if(this.httpClient.get<BookingDetails>(this.url + 'bookingDetails'))
+    return this.httpClient.post(this.url + 'bookingDetails', bookingDetails);
   }
 }

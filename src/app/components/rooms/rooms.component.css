@@ -34,10 +34,12 @@ span {
     cursor: pointer;
 }
 
-.unavailable {
+.unavailable,
+.unavailable:hover {
     background-color: gray;
     border: 1px solid gray;
     color: white;
+    cursor: not-allowed;
 }
 
 .row {

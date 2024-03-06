@@ -46,6 +46,10 @@ export class RoomsComponent {
     return this.bookingDetails.bookedRooms.filter(e => e.roomNumber == room).length > 0;
   }
 
+  unavailableRooms(room : number) {
+    return room == 101;
+  }
+
   addRooms(num: number, roomType: string, price: number) {
     let roomDetails = new RoomDetails(new Date().valueOf(), num, roomType, price, 1, 1);
     this.bookingDetails?.bookedRooms.push(roomDetails);
