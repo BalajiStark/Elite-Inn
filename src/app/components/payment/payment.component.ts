@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import { Rooms } from '../../model/rooms.model';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { BookingDetails, RoomDetails } from '../../model/Booking.model';
+import { RoomBookingDetails } from '../../model/Booking.model';
 import { RoomService } from '../../shared/room.service';
 import { PaymentValidator } from '../../shared/Payment.validator';
 
@@ -23,38 +22,38 @@ export class PaymentComponent {
   cvv = this.form.get("cvv");
 
   rooms: number[] = [];
-  bookingDetails: BookingDetails = new BookingDetails(1, new Date());
-  selectedRooms: RoomDetails[] = [];
+  bookedRooms: RoomBookingDetails[] = [];
   total: number = 0;
 
   constructor(private roomService: RoomService) {
     this.roomService.bookingDetails$.subscribe(data => {
-      this.bookingDetails = data;
+      this.bookedRooms = data;
       this.checkTotal();
     })
   }
 
-  removeRooms(room: RoomDetails) {
-    let filtered = this.bookingDetails?.bookedRooms.filter(function (obj) {
+  removeRooms(room: RoomBookingDetails) {
+    let filtered = this.bookedRooms.filter(function (obj) {
       return obj.roomNumber !== room.roomNumber;
     });
-    this.bookingDetails.bookedRooms = filtered;
-    this.roomService.bookingDetails.next(this.bookingDetails);
+    this.roomService.bookingDetails.next(filtered);
   }
 
-  adultsCountChanged(event: any, room: RoomDetails) {
+  adultsCountChanged(event: any, room: RoomBookingDetails) {
     event.target.value == 1 ? room.price -= 50 : room.price += 50;
+    room.adultsCount = Number(event.target.value);
     this.checkTotal();
   }
 
-  childCountChanged(event: any, room: RoomDetails) {
+  childCountChanged(event: any, room: RoomBookingDetails) {
     event.target.value == 1 ? room.price -= 25 : room.price += 25;
+    room.adultsCount = Number(event.target.value);
     this.checkTotal();
   }
 
   checkTotal() {
     this.total = 0;
-    this.bookingDetails.bookedRooms.forEach(data => {
+    this.bookedRooms.forEach(data => {
       this.total += data.price;
     })
   }
@@ -71,7 +70,18 @@ export class PaymentComponent {
     }
 
     if (this.cardNumber?.valid && this.cvv?.valid && this.expiry?.valid) {
-      this.roomService.BookRooms(this.bookingDetails).subscribe();
+
+      for(let i = 0; i < this.bookedRooms.length; i++) {
+        this.roomService.BookRooms(this.bookedRooms[i]).subscribe(data => {
+          if(i == this.bookedRooms.length -1) {
+            window.alert("Booked Successfully");
+            this.bookedRooms = [];
+            this.roomService.bookingDetails.next(this.bookedRooms);
+            this.roomService.GetBookedRooms();
+            this.form.reset();
+          }
+        });
+      }
     }
   }
 }

@@ -16,7 +16,7 @@ export class DateComponent {
   constructor(private roomService: RoomService) {
     this.roomService.GetRoomNumbers();
     this.roomService.bookingDetails$.subscribe(data => {
-      this.bookedRoomsCount = data.bookedRooms.length;
+      this.bookedRoomsCount = data.length
     })
     for (let i = 0; i < 7; i++) {
       let today = new Date();

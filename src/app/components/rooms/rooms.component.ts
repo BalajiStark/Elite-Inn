@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { RoomService } from '../../shared/room.service';
 import { Rooms } from '../../model/rooms.model';
-import { BookingDetails, RoomDetails } from '../../model/Booking.model';
+import { RoomBookingDetails } from '../../model/Booking.model';
 
 @Component({
   selector: 'app-rooms',
@@ -11,12 +11,18 @@ import { BookingDetails, RoomDetails } from '../../model/Booking.model';
 export class RoomsComponent {
 
   rooms: Rooms | undefined;
-  bookingDetails: BookingDetails = new BookingDetails(1, new Date());
+  bookedRooms: RoomBookingDetails[] = [];
+  unavailableRooms: RoomBookingDetails[] = [];
 
   constructor(private roomService: RoomService) {
-    this.bookingDetails = new BookingDetails(1, new Date());
     this.roomService.rooms$.subscribe(data => {
       this.rooms = data;
+    });
+    this.roomService.bookingDetails$.subscribe(data => {
+      this.bookedRooms = data;
+    });
+    this.roomService.paidRooms$.subscribe(data => {
+      this.unavailableRooms = data;
     });
   }
 
@@ -43,23 +49,25 @@ export class RoomsComponent {
   }
 
   checkRooms(room: number) {
-    return this.bookingDetails.bookedRooms.filter(e => e.roomNumber == room).length > 0;
+    return this.bookedRooms.filter(e => e.roomNumber == room).length > 0;
   }
 
-  unavailableRooms(room : number) {
-    return room == 101;
+  checkUnavailableRooms(room : number) {
+    return this.unavailableRooms.filter(e => e.roomNumber == room).length > 0;
   }
 
   addRooms(num: number, roomType: string, price: number) {
-    let roomDetails = new RoomDetails(new Date().valueOf(), num, roomType, price, 1, 1);
-    this.bookingDetails?.bookedRooms.push(roomDetails);
-    this.roomService.bookingDetails.next(this.bookingDetails);
+    if(!this.checkUnavailableRooms(num)) {
+      let roomDetails = new RoomBookingDetails(new Date().valueOf(), num, roomType, price, 1, 1, 1, new Date());
+      this.bookedRooms.push(roomDetails);
+      this.roomService.bookingDetails.next(this.bookedRooms);
+    }
   }
 
   removeRooms(num: number) {
-    this.bookingDetails.bookedRooms = this.bookingDetails?.bookedRooms.filter(function (obj) {
+    this.bookedRooms = this.bookedRooms.filter(function (obj) {
       return obj.roomNumber !== num;
     });
-    this.roomService.bookingDetails.next(this.bookingDetails);
+    this.roomService.bookingDetails.next(this.bookedRooms);
   }
 }

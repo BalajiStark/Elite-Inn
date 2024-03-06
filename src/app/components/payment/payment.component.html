@@ -3,7 +3,7 @@
         Selected Rooms
     </h6>
     <div class="selectedRooms">
-        <div *ngFor="let b of bookingDetails?.bookedRooms; let i = index">
+        <div *ngFor="let b of bookedRooms; let i = index">
             <button class="btn btn-primary room-btn" style="height: 25px">
                 Room {{ b.roomNumber }}
             </button>
@@ -47,7 +47,7 @@
     </div>
     <h6>Payment</h6>
     <form [formGroup]="form">
-        <fieldset [disabled]="this.bookingDetails.bookedRooms.length == 0">
+        <fieldset [disabled]="this.bookedRooms.length == 0">
             <div>
                 <input required type="text" formControlName="cardNumber" class="form-control card-number"
                     id="cardNumber" placeholder="CardNumber" maxlength="12">
