@@ -14,6 +14,9 @@ import { BookComponent } from './components/book/book.component';
 import { DateComponent } from './components/date/date.component';
 import { RoomsComponent } from './components/rooms/rooms.component';
 import { PaymentComponent } from './components/payment/payment.component';
+import { MybookingsComponent } from './components/mybookings/mybookings.component';
+import { DateFormatter } from './shared/dateformatter.pipe';
+import { GuestService } from './shared/guest.service';
 
 @NgModule({
   declarations: [
@@ -25,7 +28,9 @@ import { PaymentComponent } from './components/payment/payment.component';
     BookComponent,
     DateComponent,
     RoomsComponent,
-    PaymentComponent
+    PaymentComponent,
+    MybookingsComponent,
+    DateFormatter
   ],
   imports: [
     BrowserModule,
@@ -34,11 +39,12 @@ import { PaymentComponent } from './components/payment/payment.component';
     ReactiveFormsModule,
     HttpClientModule,
     RouterModule.forRoot([
-      {path: '', component: HomeComponent},
-      {path: 'home', component: HomeComponent},
-      {path: 'login', component: LoginComponent},
-      {path: 'accommodation', component: AccommodationComponent},
-      {path: 'book', component: BookComponent}
+      { path: '', component: HomeComponent },
+      { path: 'home', component: HomeComponent },
+      { path: 'login', component: LoginComponent },
+      { path: 'accommodation', component: AccommodationComponent },
+      { path: 'book', component: BookComponent, canActivate: [GuestService] },
+      { path: 'mybookings', component: MybookingsComponent, canActivate: [GuestService]  }
     ])
   ],
   providers: [

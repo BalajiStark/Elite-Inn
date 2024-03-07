@@ -1,3 +1,7 @@
 .our-rooms {
     margin-left: 5%;
 }
+
+.card {
+    cursor: pointer;
+}
