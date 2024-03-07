@@ -15,6 +15,7 @@ export class DateComponent {
 
   constructor(private roomService: RoomService) {
     this.roomService.GetRoomNumbers();
+    this.roomService.GetBookedRooms();
     this.roomService.bookingDetails$.subscribe(data => {
       this.bookedRoomsCount = data.length
     });

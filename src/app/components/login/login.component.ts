@@ -27,8 +27,8 @@ export class LoginComponent {
   password = this.form.get("password");
   loginEmail = this.form.get("logInEmail");
   loginPassword = this.form.get("logInPassword");
-  signIn = true;
-  signIntext = "Existing user? Click here to Log in";
+  signIn = false;
+  signIntext = "New User? Click here to Sign in";
 
   constructor(private httpClient: HttpClient,
     private router: Router,

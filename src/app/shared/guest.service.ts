@@ -13,9 +13,12 @@ export class GuestService {
   private user = new Subject<Guest>();
   user$ = this.user.asObservable();
 
+  signedUser : Guest | undefined;
+
   constructor(private httpClient: HttpClient) { }
 
   SetUser(user: Guest) {
+    this.signedUser = user;
     this.user.next(user);
   }
 

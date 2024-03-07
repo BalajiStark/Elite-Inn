@@ -7,9 +7,9 @@ import { Component, OnInit, Renderer2 } from '@angular/core';
 })
 export class HomeComponent {
 
-  constructor(private renderer: Renderer2)
-  {
-    this.renderer.setStyle(document.body, 'background', 'url(\'https://img.hotimg.com/pexels-donald-tong-189296.jpeg\')');
+  src = "https://img.hotimg.com/pexels-donald-tong-189296.jpeg";
+
+  constructor(private renderer: Renderer2) {
     this.renderer.setStyle(document.body, 'background-size', 'cover');
     this.renderer.setStyle(document.body, 'background-repeat', 'no-repeat');
     this.renderer.setStyle(document.body, 'background-attachment', 'fixed');

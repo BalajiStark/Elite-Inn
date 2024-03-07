@@ -24,7 +24,6 @@ export class RoomService {
   selectedDate$ = this.selectedDate.asObservable();
 
   constructor(private httpClient: HttpClient) {
-    this.GetBookedRooms()
   }
 
   GetRoomNumbers() {

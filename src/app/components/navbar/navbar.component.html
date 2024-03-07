@@ -1,20 +1,20 @@
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Elite INN</a>
+    <a class="navbar-brand" (click)="redirectPage('')">Elite INN</a>
     <div class="collapse navbar-collapse navbar-dark bg-dark" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="/accommodation">Accommodation</a>
+          <a class="nav-link" aria-current="page" (click)="redirectPage('accommodation')">Accommodation</a>
         </li>
         <li class="nav-item" *ngIf="isSignedIn">
-          <a class="nav-link" aria-current="page" href="/book">Book</a>
+          <a class="nav-link" aria-current="page" (click)="redirectPage('book')">Book</a>
         </li>
         <li class="nav-item" *ngIf="isSignedIn">
-          <a class="nav-link" aria-current="page" href="">My Bookings</a>
+          <a class="nav-link" aria-current="page" (click)="redirectPage('')">My Bookings</a>
         </li>
       </ul>
       <span class="navbar-text">
-        <a *ngIf="!isSignedIn" class="nav-link" aria-current="page" href="/login">Login</a>
+        <a *ngIf="!isSignedIn" class="nav-link" aria-current="page" (click)="redirectPage('login')">Login</a>
         <div *ngIf="isSignedIn" class="dropdown">
           <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Hello, {{ user?.name }}
