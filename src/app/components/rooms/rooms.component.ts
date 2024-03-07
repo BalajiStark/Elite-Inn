@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { RoomService } from '../../shared/room.service';
 import { Rooms } from '../../model/rooms.model';
 import { RoomBookingDetails } from '../../model/Booking.model';
+import { GuestService } from '../../shared/guest.service';
+import { Guest } from '../../model/Guest.model';
 
 @Component({
   selector: 'app-rooms',
@@ -14,8 +16,9 @@ export class RoomsComponent {
   bookedRooms: RoomBookingDetails[] = [];
   unavailableRooms: RoomBookingDetails[] = [];
   selectedDate : Date = new Date();
+  user : Guest | undefined;
 
-  constructor(private roomService: RoomService) {
+  constructor(private roomService: RoomService, private guestService: GuestService) {
     this.roomService.rooms$.subscribe(data => {
       this.rooms = data;
     });
@@ -28,6 +31,7 @@ export class RoomsComponent {
     this.roomService.selectedDate$.subscribe(data => {
       this.selectedDate = data;
     });
+    this.user = this.guestService.signedUser;
   }
 
   selectRoom(num: number, roomType: string) {
@@ -62,7 +66,7 @@ export class RoomsComponent {
 
   addRooms(num: number, roomType: string, price: number) {
     if(!this.checkUnavailableRooms(num)) {
-      let roomDetails = new RoomBookingDetails(new Date().valueOf(), num, roomType, price, 1, 1, 1, this.selectedDate);
+      let roomDetails = new RoomBookingDetails(new Date().valueOf(), num, roomType, price, 1, 1, this.user?.id, this.selectedDate);
       this.bookedRooms.push(roomDetails);
       this.roomService.bookingDetails.next(this.bookedRooms);
     }
