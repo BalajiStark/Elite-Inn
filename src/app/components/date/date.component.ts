@@ -17,7 +17,11 @@ export class DateComponent {
     this.roomService.GetRoomNumbers();
     this.roomService.bookingDetails$.subscribe(data => {
       this.bookedRoomsCount = data.length
-    })
+    });
+    this.roomService.selectedDate$.subscribe(data => {
+      this.selectedDate = data
+    });
+    this.roomService.selectedDate.next(this.selectedDate);
     for (let i = 0; i < 7; i++) {
       let today = new Date();
       today.setDate(today.getDate() + i);
@@ -35,6 +39,7 @@ export class DateComponent {
         this.dates.push(today);
       }
       this.selectedDate = this.dates[0];
+      this.roomService.selectedDate.next(this.dates[0]);
     } else {
       window.alert("Remove the booked rooms for a day");
     }
@@ -51,6 +56,7 @@ export class DateComponent {
           this.dates.push(today);
         }
         this.selectedDate = this.dates[0];
+        this.roomService.selectedDate.next(this.dates[0]);
       }
     } else {
       window.alert("Remove the booked rooms for a day");
@@ -60,6 +66,7 @@ export class DateComponent {
   selectedDateFunction(date: any) {
     if (this.bookedRoomsCount == 0) {
       this.selectedDate = date;
+      this.roomService.selectedDate.next(date);
     } else {
       window.alert("Remove the booked rooms for a day");
     }

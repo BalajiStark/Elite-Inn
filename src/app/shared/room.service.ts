@@ -20,6 +20,9 @@ export class RoomService {
   paidRooms = new Subject<RoomBookingDetails[]>();
   paidRooms$ = this.paidRooms.asObservable();
 
+  selectedDate = new Subject<Date>();
+  selectedDate$ = this.selectedDate.asObservable();
+
   constructor(private httpClient: HttpClient) {
     this.GetBookedRooms()
   }

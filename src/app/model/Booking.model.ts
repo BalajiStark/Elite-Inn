@@ -6,7 +6,7 @@ export class RoomBookingDetails {
     public adultsCount: number;
     public childCount: number;
     public userId: number;
-    public date: Date | undefined;
+    public date: Date;
 
     constructor(id: any, roomNumber: number, roomType: string, price: number, adultsCount: number, childCount: number, userId: number, date: Date) {
         this.id = id;

@@ -13,6 +13,7 @@ export class RoomsComponent {
   rooms: Rooms | undefined;
   bookedRooms: RoomBookingDetails[] = [];
   unavailableRooms: RoomBookingDetails[] = [];
+  selectedDate : Date = new Date();
 
   constructor(private roomService: RoomService) {
     this.roomService.rooms$.subscribe(data => {
@@ -23,6 +24,9 @@ export class RoomsComponent {
     });
     this.roomService.paidRooms$.subscribe(data => {
       this.unavailableRooms = data;
+    });
+    this.roomService.selectedDate$.subscribe(data => {
+      this.selectedDate = data;
     });
   }
 
@@ -53,12 +57,12 @@ export class RoomsComponent {
   }
 
   checkUnavailableRooms(room : number) {
-    return this.unavailableRooms.filter(e => e.roomNumber == room).length > 0;
+    return this.unavailableRooms.filter(e => e.roomNumber == room && new Date(e.date).toDateString() == this.selectedDate?.toDateString()).length > 0;
   }
 
   addRooms(num: number, roomType: string, price: number) {
     if(!this.checkUnavailableRooms(num)) {
-      let roomDetails = new RoomBookingDetails(new Date().valueOf(), num, roomType, price, 1, 1, 1, new Date());
+      let roomDetails = new RoomBookingDetails(new Date().valueOf(), num, roomType, price, 1, 1, 1, this.selectedDate);
       this.bookedRooms.push(roomDetails);
       this.roomService.bookingDetails.next(this.bookedRooms);
     }
