@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Guest } from '../model/Guest.model';
 import { Subject } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -13,9 +14,9 @@ export class GuestService {
   private user = new Subject<Guest>();
   user$ = this.user.asObservable();
 
-  signedUser : Guest | undefined;
+  signedUser: Guest | undefined;
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient, private router: Router) { }
 
   SetUser(user: Guest) {
     this.signedUser = user;
@@ -34,5 +35,11 @@ export class GuestService {
     return this.httpClient.get<Guest[]>(this.url + '?email=' + email + '&password=' + password);
   }
 
+  canActivate() {
+    if (this.signedUser)
+      return true;
 
+    this.router.navigate(["/login"]);
+    return false;
+  }
 }
