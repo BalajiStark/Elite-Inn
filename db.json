@@ -57,5 +57,17 @@
       308,
       309
     ]
-  }
+  },
+  "bookingDetails": [
+    {
+      "id": 1709813915591,
+      "roomNumber": 109,
+      "roomType": "Standard",
+      "price": 123,
+      "adultsCount": 1,
+      "childCount": 1,
+      "userId": 1,
+      "date": "2024-03-07T12:18:35.591Z"
+    }
+  ]
 }

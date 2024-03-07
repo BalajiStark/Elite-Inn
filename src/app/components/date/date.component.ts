@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { RoomService } from '../../shared/room.service';
 
 @Component({
   selector: 'app-date',
@@ -9,9 +10,18 @@ export class DateComponent {
 
   dates: Date[] = [];
   tDate = new Date();
-  selectedDate: Date | undefined;
+  selectedDate: Date = new Date();
+  bookedRoomsCount: number = 0;
 
-  constructor() {
+  constructor(private roomService: RoomService) {
+    this.roomService.GetRoomNumbers();
+    this.roomService.bookingDetails$.subscribe(data => {
+      this.bookedRoomsCount = data.length
+    });
+    this.roomService.selectedDate$.subscribe(data => {
+      this.selectedDate = data
+    });
+    this.roomService.selectedDate.next(this.selectedDate);
     for (let i = 0; i < 7; i++) {
       let today = new Date();
       today.setDate(today.getDate() + i);
@@ -20,26 +30,49 @@ export class DateComponent {
   }
 
   increaseWeek() {
-    var lastDate = this.dates[6];
-    this.dates = [];
-    for (let i = 0; i < 7; i++) {
-      const today = new Date(lastDate);
-      today.setDate(today.getDate() + i + 1);
-      this.dates.push(today);
+    if (this.bookedRoomsCount == 0) {
+      var lastDate = this.dates[6];
+      this.dates = [];
+      for (let i = 0; i < 7; i++) {
+        const today = new Date(lastDate);
+        today.setDate(today.getDate() + i + 1);
+        this.dates.push(today);
+      }
+      this.selectedDate = this.dates[0];
+      this.roomService.selectedDate.next(this.dates[0]);
+    } else {
+      window.alert("Remove the booked rooms for a day");
     }
   }
 
   decreaseWeek() {
-    var lastDate = this.dates[0];
-    this.dates = [];
-    for (let i = 0; i < 7; i++) {
-      const today = new Date(lastDate);
-      today.setDate(today.getDate() - 7 + i);
-      this.dates.push(today);
+    if (this.bookedRoomsCount == 0) {
+      if (!this.isToday()) {
+        var lastDate = this.dates[0];
+        this.dates = [];
+        for (let i = 0; i < 7; i++) {
+          const today = new Date(lastDate);
+          today.setDate(today.getDate() - 7 + i);
+          this.dates.push(today);
+        }
+        this.selectedDate = this.dates[0];
+        this.roomService.selectedDate.next(this.dates[0]);
+      }
+    } else {
+      window.alert("Remove the booked rooms for a day");
     }
   }
 
   selectedDateFunction(date: any) {
-    this.selectedDate = date;
+    if (this.bookedRoomsCount == 0) {
+      this.selectedDate = date;
+      this.roomService.selectedDate.next(date);
+    } else {
+      window.alert("Remove the booked rooms for a day");
+    }
+  }
+
+  isToday() {
+    return this.dates[0].toDateString() == new Date().toDateString();
   }
 }

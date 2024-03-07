@@ -6,7 +6,8 @@
     <div class="row">
         <ng-container *ngFor="let s of rooms?.standard; let i = index">
             <div class="col">
-                <div class="card" (click)="selectRoom(s, 'Standard')" [ngClass]="{'selectedRoom': checkRooms(s, 'Standard')}">
+                <div class="card" (click)="selectRoom(s, 'Standard')" [ngClass]="{'selectedRoom': checkRooms(s)}"
+                    [ngClass]="{'unavailable' :checkUnavailableRooms(s)}">
                     <div class="card-body">
                         <p>{{ s }}</p>
                     </div>
@@ -20,7 +21,8 @@
     <div class="row">
         <ng-container *ngFor="let s of rooms?.studio; let i = index">
             <div class="col">
-                <div class="card" (click)="selectRoom(s, 'Studio')" [ngClass]="{'selectedRoom': checkRooms(s, 'Studio')}">
+                <div class="card" (click)="selectRoom(s, 'Studio')" [ngClass]="{'selectedRoom': checkRooms(s)}"
+                    [ngClass]="{'unavailable' :checkUnavailableRooms(s)}">
                     <div class="card-body">
                         <p>{{ s }}</p>
                     </div>
@@ -34,7 +36,8 @@
     <div class="row">
         <ng-container *ngFor="let s of rooms?.suite; let i = index">
             <div class="col">
-                <div class="card" (click)="selectRoom(s, 'Suite')" [ngClass]="{'selectedRoom': checkRooms(s, 'Suite')}">
+                <div class="card" (click)="selectRoom(s, 'Suite')" [ngClass]="{'selectedRoom': checkRooms(s)}"
+                    [ngClass]="{'unavailable' :checkUnavailableRooms(s)}">
                     <div class="card-body">
                         <p>{{ s }}</p>
                     </div>
